@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Mavenproject2 {
 
-//    Method to add numbers
+    // Method to add numbers
     static void addNumbers() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter first number:");
@@ -12,10 +12,10 @@ public class Mavenproject2 {
         System.out.println("Enter second number:");
         double b = input.nextDouble();
         double c = a + b;
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to subtract numbers
+
+    // Method to subtract numbers
     static void subNumbers() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter first number:");
@@ -23,10 +23,10 @@ public class Mavenproject2 {
         System.out.println("Enter second number:");
         double b = input.nextDouble();
         double c = a - b;
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to multiply numbers
+
+    // Method to multiply numbers
     static void multNumbers() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter first number:");
@@ -34,21 +34,25 @@ public class Mavenproject2 {
         System.out.println("Enter second number:");
         double b = input.nextDouble();
         double c = a * b;
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to divide numbers
+
+    // Method to divide numbers
     static void divNumbers() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter first number:");
         double a = input.nextDouble();
         System.out.println("Enter second number:");
         double b = input.nextDouble();
-        double c = a / b;
-        System.out.println(c);
+        if (b != 0) {
+            double c = a / b;
+            System.out.println("Result: " + c);
+        } else {
+            System.out.println("Division by zero is not allowed.");
+        }
     }
-    
-//    Method to calculate remainder
+
+    // Method to calculate remainder
     static void calRemainder() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter first number:");
@@ -56,10 +60,10 @@ public class Mavenproject2 {
         System.out.println("Enter second number:");
         double b = input.nextDouble();
         double c = a % b;
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to calculate power of a number
+
+    // Method to calculate power of a number
     static void calPower() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter base number:");
@@ -67,38 +71,40 @@ public class Mavenproject2 {
         System.out.println("Enter exponent number:");
         double b = input.nextDouble();
         double c = Math.pow(a, b);
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to calculate square root
+
+    // Method to calculate square root
     static void calSqrt() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the number:");
         double a = input.nextDouble();
         double c = Math.sqrt(a);
-        System.out.println(c);
+        System.out.println("Result: " + c);
     }
-    
-//    Method to calculate
-    static void calFactorial() {
+
+    // Method to calculate factorial
+    static long calFactorial(long a) {
+        if (a == 0 || a == 1) {
+            return 1;
+        } else {
+            return a * calFactorial(a - 1);
+        }
+    }
+
+    static void factorialOperation() {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter the number:");
         long a = input.nextInt();
-        long factorial;
-        if (a == 0 || a == 1) {
-            factorial = 1;
-        } else {
-            factorial = a * calFactorial(a - 1);
-            return factorial;
-        }
-                    System.out.println(factorial);
+        long factorial = calFactorial(a);
+        System.out.println("Result: " + factorial);
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
         String response;
         do {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Which operation(+, -, *, /, %, ^, √, factorial) do you want to perform?");
+            System.out.println("Which operation (+, -, *, /, %, ^, √, factorial) do you want to perform?");
             String reply = input.next();
             switch (reply) {
                 case "+":
@@ -123,13 +129,13 @@ public class Mavenproject2 {
                     calSqrt();
                     break;
                 case "factorial":
-                    calFactorial();
+                    factorialOperation();
                     break;
                 default:
-                    System.out.println("NO such operation available!");
+                    System.out.println("No such operation available!");
             }
-            System.out.println("Do you want to continue?");
+            System.out.println("Do you want to continue? (yes/no)");
             response = input.next().toLowerCase();
-        } while (response == "yes");
+        } while (response.equals("yes"));
     }
 }
